@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Document Classification</title>
+
+    <link href= "{% static 'css/cover.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <div class = "bg">
+      <p></p>
+    </div>
+  <body class="text-center">
+    <div class="cover-container d-flex w-200 h-200 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <p>
+        <img src="{% static 'img/heavywater.jpg' %}" width="200" height="80" />
+      </p>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link active" href="https://www.heavywater.com/">Home</a>
+        <a class="nav-link" href="https://www.heavywater.com/blog">Blog</a>
+        <a class="nav-link" href="https://www.linkedin.com/company/heavywater-inc-/about/">Social</a>
+      </nav>
+    </div>
+  </header>
+
+  <br />
+  <br />
+  <br />
+
+  <style>
+  *{padding:0;margin:0;}
+  .footer{
+      height:50px;
+      width:100%;
+      position:absolute;
+      bottom:0;
+      left:0;
+  }
+  </style>
+
+  <main role="main" class="inner cover">
+    <h1 class="cover-heading">Predict your document label.</h1>
+    <p class="lead">Type your document data, and it will predict the label with accuracy 73%</p>
+    <p class="lead">
+        <table border = '5' align="center" style="margin: 0px auto;">
+      <form action="" method="post">
+      {% csrf_token %}
+            <P>
+                <label >Document Data:</label>
+                <input type="text" name ='Content'/>
+            </P>
+            <p><input type="submit" class="btn btn-lg btn-secondary" value="Submit"/></p>
+      </form>
+      <thead>
+        <tr>
+            <td><font size = "5" >Predict Label</font></td>
+        </tr>
+        </thead>
+        {% if error_msg %}
+        <p><font size = "4" color = "red" >{{ error_msg }}</font></p>
+        {% endif %}
+        <tr>
+            <td><font size = "5" >{{prediction}}</font></td>
+        </tr>
+    </p>
+  </main>
+    </br>
+
+  <footer class="mastfoot mt-auto">
+    <div class="footer">
+      <p>@Copyright 2019. <a href="https://www.heavywater.com/">HeavyWater</a>. All Rights Reserved.</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
