@@ -1,6 +1,6 @@
 # document-classification
 
-**Problem Description:**
+## Problem Description
 
 We process documents related to mortgages, aka everything that happens to originate a mortgage that you don't see as a borrower. Often times the only access to a document we have is a scan of a fax of a print out of the document. Our system is able to read and comprehend that document, turning a PDF into structured business content that our customers can act on.
 
@@ -16,7 +16,7 @@ The first field is the document label. Everything after the comma is a space del
 
 The dataset is included as part of this repo in ./doc_classification/model
 
-**Data Description**
+## Data Description
 
 After checking data , I found there are 14 document labels at all.
 
@@ -30,7 +30,7 @@ After checking the datafiles, I found there are some missing values in both labe
 >
 >continue
 
-**Analysis**
+## Analysis
 
 **Training Data & Testing Data**
 
@@ -42,11 +42,35 @@ In this model, I split the data into 2 parts with ratio: 8:2, where the first pa
 
 In this project, I used TF-IDF（term frequency–inverse document frequency） to create sentence vectors.
 
-**Model**
+## Model
+
+**Generate Model**
 
 I used Naive Bayes model available in the scikit-learn. After splitting the data into 80% train and 20% test, this model predicted the test data with about 73% accuracy.
 
-**Deployment**
+![image](https://user-images.githubusercontent.com/50597514/57986706-673f1e80-7a46-11e9-9d7f-a44038df3788.png)
+
+**Save and Read Model**
+
+Use pickle to save and read the model:
+```
+with open('model.pickle', 'wb') as f:
+pickle.dump(classifier, f, protocol=pickle.HIGHEST_PROTOCOL)
+```
+```
+with open('./model/model.pickle', 'rb') as f:
+classifier = pickle.load(f)
+```
+
+## Web Page
+
+I used Django which is a framework written in Python to create this website project.
+
+I used html, css and Bootstrap to develop and modify the web page, like the inputfield and submit bottom.
+
+Restful API.
+
+## Deployment
 
 **AWS lambda**
 
@@ -55,3 +79,33 @@ AWS Lambda is a serverless computing platform by amazon, which is completely eve
 **Zappa**
 
 Zappa is a python framework used for deploying python applications onto AWS-Lambda. Zappa handles all of the configuration and deployment automatically for us.
+
+**Deployment**
+
+The prediction function is deployed on AWS lambda with the help of Zappa, and the model and required packages for the functions are stored on AWS S3. For security, contact me at ```shurancn@gmail.com``` if you want to access the deployed website :)
+
+## Execution Instructions
+
+>**Step 1**
+
+Enroll in the envirnment: ```source bin/avtivate```
+
+>**Step 2**
+
+```cd doc_classification```, then Install all the needed packages: ```pip3 install -r requirements.txt```
+
+>**Step 3**
+
+```cd doc_classification```, then run the server: ```python3 manage.py runserver```
+
+*PS: To access the code of training model, go to*
+```
+./doc_classification/doc_classification/model/train_model.py
+```
+
+## Improvements
+
+>1. Different ML models like SVM, Logistic Regression and Decision Trees should be tested and compared, I didn't try this time due to time constraint.
+>2. Before hashing ouput from OCR layer, removing stop-words can be done to get better classification.
+
+
