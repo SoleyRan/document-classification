@@ -96,7 +96,7 @@ Enroll in the envirnment: ```source bin/avtivate```
 
 >**Step 3**
 
-```cd doc_classification```, then run the server: ```python3 manage.py runserver```
+```cd doc_classification```, ```python3 manage.py migrate```, then run the server: ```python3 manage.py runserver```
 
 *PS: To access the code of training model, go to*
 ```
