@@ -50,6 +50,8 @@ I used Naive Bayes model available in the scikit-learn. After splitting the data
 
 ![image](https://user-images.githubusercontent.com/50597514/57986706-673f1e80-7a46-11e9-9d7f-a44038df3788.png)
 
+UPDATE: I applyed Decision Tree Model and it predicted the test data with about 82% accuracy!
+
 **Save and Read Model**
 
 Use pickle to save and read the model:
